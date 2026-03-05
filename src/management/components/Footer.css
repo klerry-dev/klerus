@@ -1,0 +1,36 @@
+.management-footer {
+  background-color: #1a1a1a;
+  color: #999;
+  padding: 20px 0;
+  border-top: 1px solid #333;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 64px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  max-width: 100%;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-link {
+  color: #999;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
