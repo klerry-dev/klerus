@@ -21,7 +21,7 @@
     }
   ],
   "env": {
-    "SUPABASE_URL": "@supabase-url",
-    "SUPABASE_ANON_KEY": "@supabase-anon-key"
+    "SUPABASE_URL": "https://iijgdnfbvlfczmanhekg.supabase.co",
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlpamdkbmZidmxmY3ptYW5oZWtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MDczMzIsImV4cCI6MjA4ODI4MzMzMn0.3YkwBHhxuWje6CQyX1RbkOjdG5VEH1UtmW6XvMj0nnY"
   }
 }
