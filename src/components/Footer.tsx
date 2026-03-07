@@ -374,7 +374,7 @@ export function Footer() {
           )}
 
           {/* Pill shape on the right with input and circle - with left margin for the circle */}
-          <div className="flex-1 min-h-16 pill-surface rounded-4xl shadow-2xl px-4 flex items-center gap-3 ml-20">
+          <div className="flex-1 min-h-16 pill-surface rounded-4xl shadow-2xl px-4 flex items-end gap-3 ml-20 relative">
             <textarea
               ref={textareaRef}
               value={inputValue}
@@ -386,18 +386,19 @@ export function Footer() {
                 }
               }}
               placeholder="Ask anything"
-              className="flex-1 bg-transparent text-white placeholder-white/40 outline-none text-base ml-2 pt-6 resize-none overflow-hidden"
+              className="flex-1 bg-transparent text-white placeholder-white/40 outline-none text-base ml-2 py-3 resize-none overflow-hidden"
+              style={{ minHeight: "2.5rem", maxHeight: "8rem" }}
             />
             <div
               onClick={() => {
                 if (isLoading) {
                   // Toggle pause state when loading
-                  setIsPaused(!isPaused);
+                  togglePause();
                 } else if (inputValue.trim()) {
                   handleSendMessage();
                 }
               }}
-              className={`w-10 h-10 rounded-full flex items-center justify-center ml-auto cursor-pointer transition-colors ${
+              className={`absolute bottom-2 right-3 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-colors ${
                 isRecording ? "bg-brand-accent animate-pulse"
                 : inputValue.trim() && !isLoading ?
                   "bg-brand-accent hover:bg-brand-accent/90"

@@ -189,7 +189,7 @@ export function Projects({ onViewerOpenChange }: ProjectsProps) {
 
       {/* Viewer Modal */}
       {viewerProject && (
-        <Viewer initialUrl={viewerProject.image} onClose={closeViewer} />
+        <Viewer project={viewerProject} onClose={closeViewer} />
       )}
     </div>
   );
