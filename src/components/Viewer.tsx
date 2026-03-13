@@ -159,7 +159,7 @@ export function Viewer({ project, onClose }: ViewerProps) {
     >
       {/* Floating Header */}
       <div
-        className="absolute top-0 left-0 right-0 z-10 p-6 bg-gradient-to-b from-black/80 to-transparent"
+        className="absolute top-0 left-0 right-0 z-10 p-6 bg-linear-to-b from-black/80 to-transparent"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -175,7 +175,7 @@ export function Viewer({ project, onClose }: ViewerProps) {
               <p className="text-white/60 text-sm">{project.category}</p>
             </div>
             {project.featured && (
-              <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 px-3 py-1.5 rounded-full border border-yellow-500/30">
+              <div className="flex items-center gap-2 bg-linear-to-r from-yellow-500/20 to-orange-500/20 px-3 py-1.5 rounded-full border border-yellow-500/30">
                 <Star size={16} className="text-yellow-400 fill-yellow-400" />
                 <span className="text-yellow-400 text-sm font-medium">
                   Featured
@@ -273,7 +273,7 @@ export function Viewer({ project, onClose }: ViewerProps) {
                     </span>
                     <div className="flex-1 h-1.5 bg-white/20 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-brand-accent to-brand-accent/80 transition-all duration-300"
+                        className="h-full bg-linear-to-r from-brand-accent to-brand-accent/80 transition-all duration-300"
                         style={{
                           width: `${duration > 0 ? (playbackTime / duration) * 100 : 0}%`,
                         }}
@@ -360,7 +360,7 @@ export function Viewer({ project, onClose }: ViewerProps) {
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1.5 bg-gradient-to-r from-brand-accent/20 to-brand-accent/10 text-brand-accent rounded-xl text-xs font-medium border border-brand-accent/30"
+                      className="px-3 py-1.5 bg-linear-to-r from-brand-accent/20 to-brand-accent/10 text-brand-accent rounded-xl text-xs font-medium border border-brand-accent/30"
                     >
                       {tech}
                     </span>

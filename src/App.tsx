@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Product } from "./types";
 import { Layout } from "./components/Layout";
+import { DesktopLayout } from "./components/DesktopLayout";
 import { Cart } from "./components/Cart";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
@@ -15,12 +16,14 @@ import { Projects } from "./pages/Projects";
 import { Shop } from "./pages/Shop";
 import { Chat } from "./pages/Chat";
 import { Search } from "./pages/Search";
+import { Profile } from "./pages/Profile";
 import { Terms } from "./pages/Terms";
 import { Analytics } from "./pages/Analytics";
 import { Reports } from "./pages/Reports";
 import { ViewerPage } from "./pages/Viewer";
-import { ManagementSite } from "./management";
+import { Management } from "./pages/Management";
 import { ChatProvider } from "./contexts/ChatContext";
+import { ProfileProvider } from "./contexts/ProfileContext";
 
 interface CartItem extends Product {
   quantity: number;
@@ -82,58 +85,114 @@ function AppContent() {
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <ChatProvider>
-      <>
-        <Layout
-          cartCount={cartItemCount}
-          hideFooter={viewerOpen || chatViewerOpen}
-          onCartClick={() => setCartOpen(true)}
-          onSearchClick={handleSearchClick}
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/projects"
-              element={<Projects onViewerOpenChange={setViewerOpen} />}
-            />
-            <Route
-              path="/shop"
-              element={<Shop onAddToCart={handleAddToCart} />}
-            />
-            <Route
-              path="/chat"
-              element={
-                <Chat
-                  viewerOpen={chatViewerOpen}
-                  onViewerOpenChange={setChatViewerOpen}
+    <ProfileProvider>
+      <ChatProvider>
+        <>
+          {/* Mobile Layout */}
+          <div className="md:hidden">
+            <Layout
+              cartCount={cartItemCount}
+              hideFooter={viewerOpen || chatViewerOpen}
+              onCartClick={() => setCartOpen(true)}
+              onSearchClick={handleSearchClick}
+            >
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route
+                  path="/projects"
+                  element={<Projects onViewerOpenChange={setViewerOpen} />}
                 />
-              }
-            />
-            <Route
-              path="/search"
-              element={
-                <Search cartItems={cart} onAddToCart={handleAddToCart} />
-              }
-            />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/reports" element={<Reports />} />
+                <Route
+                  path="/shop"
+                  element={<Shop onAddToCart={handleAddToCart} />}
+                />
+                <Route
+                  path="/chat"
+                  element={
+                    <Chat
+                      viewerOpen={chatViewerOpen}
+                      onViewerOpenChange={setChatViewerOpen}
+                    />
+                  }
+                />
+                <Route
+                  path="/search"
+                  element={
+                    <Search
+                      cartItems={cart}
+                      onAddToCart={handleAddToCart}
+                      onCartClick={() => setCartOpen(true)}
+                    />
+                  }
+                />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/reports" element={<Reports />} />
+              </Routes>
+            </Layout>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:block">
+            <DesktopLayout
+              cartCount={cartItemCount}
+              hideFooter={viewerOpen || chatViewerOpen}
+              onCartClick={() => setCartOpen(true)}
+              onSearchClick={handleSearchClick}
+            >
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route
+                  path="/projects"
+                  element={<Projects onViewerOpenChange={setViewerOpen} />}
+                />
+                <Route
+                  path="/shop"
+                  element={<Shop onAddToCart={handleAddToCart} />}
+                />
+                <Route
+                  path="/chat"
+                  element={
+                    <Chat
+                      viewerOpen={chatViewerOpen}
+                      onViewerOpenChange={setChatViewerOpen}
+                    />
+                  }
+                />
+                <Route
+                  path="/search"
+                  element={
+                    <Search
+                      cartItems={cart}
+                      onAddToCart={handleAddToCart}
+                      onCartClick={() => setCartOpen(true)}
+                    />
+                  }
+                />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/reports" element={<Reports />} />
+              </Routes>
+            </DesktopLayout>
+          </div>
+          <Routes>
+            <Route path="/viewer" element={<ViewerPage />} />
           </Routes>
-        </Layout>
-        <Routes>
-          <Route path="/viewer" element={<ViewerPage />} />
-        </Routes>
-        <Cart
-          items={cart}
-          isOpen={cartOpen}
-          onClose={() => setCartOpen(false)}
-          onUpdateQuantity={handleUpdateQuantity}
-          onRemoveItem={handleRemoveItem}
-          onClearCart={handleClearCart}
-        />
-      </>
-    </ChatProvider>
+          <Cart
+            items={cart}
+            isOpen={cartOpen}
+            onClose={() => setCartOpen(false)}
+            onUpdateQuantity={handleUpdateQuantity}
+            onRemoveItem={handleRemoveItem}
+            onClearCart={handleClearCart}
+          />
+        </>
+      </ChatProvider>
+    </ProfileProvider>
   );
 }
 
@@ -141,7 +200,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/management/*" element={<ManagementSite />} />
+        <Route path="/management" element={<Management />} />
         <Route path="*" element={<AppContent />} />
       </Routes>
     </BrowserRouter>

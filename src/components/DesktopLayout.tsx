@@ -3,7 +3,7 @@ import { Footer } from "./Footer";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-interface LayoutProps {
+interface DesktopLayoutProps {
   children: React.ReactNode;
   cartCount: number;
   hideFooter?: boolean;
@@ -11,13 +11,13 @@ interface LayoutProps {
   onSearchClick?: () => void;
 }
 
-export function Layout({
+export function DesktopLayout({
   children,
   cartCount,
   hideFooter = false,
   onCartClick,
   onSearchClick,
-}: LayoutProps) {
+}: DesktopLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,14 +26,14 @@ export function Layout({
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen pt-32 pb-32 max-w-md mx-auto relative bg-brand-black overflow-x-hidden md:hidden">
+    <div className="min-h-screen bg-brand-black overflow-x-hidden">
       <Header
         onSearchClick={onSearchClick || (() => navigate("/search"))}
         onCartClick={onCartClick || (() => navigate("/shop"))}
         cartCount={cartCount}
       />
 
-      <main className="px-6">{children}</main>
+      <main className="ml-48 px-12 py-12 max-w-4xl">{children}</main>
 
       {!hideFooter && <Footer />}
     </div>

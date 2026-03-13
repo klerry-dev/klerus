@@ -41,7 +41,7 @@ interface SearchResult {
   product?: Product;
 }
 
-export function Search({ cartItems, onAddToCart }: SearchProps) {
+export function Search({ cartItems, onAddToCart, onCartClick }: SearchProps) {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -453,14 +453,14 @@ export function Search({ cartItems, onAddToCart }: SearchProps) {
               <div className="grid grid-cols-2 gap-3">
                 {searchData
                   .slice(0, 6)
-                  .map((item) => {
+                  .map((item): SearchResult => {
                     if (item.title === "Minimalist Desk Lamp") {
                       return {
                         ...item,
                         title: "Cart",
                         icon: <ShoppingCart size={16} />,
                         description: "Shopping Cart",
-                        type: "cart",
+                        type: "cart" as const,
                         url: "/shop",
                         category: "Actions",
                       };

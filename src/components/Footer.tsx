@@ -248,7 +248,7 @@ export function Footer() {
   // Show blank navigation when chat is active and footer is hidden
   if (isChatActive && isFooterHidden) {
     return (
-      <nav className="fixed bottom-2 left-1/2 -translate-x-1/2 w-100 max-w-md z-50">
+      <nav className="fixed bottom-8 left-0 right-0 max-w-md mx-auto px-6 z-50">
         <div className="relative flex items-end justify-between gap-2">
           {/* Perfect circle on the left - fixed position */}
           <div className="absolute bottom-0 left-0 w-16 h-16 pill-surface rounded-full shadow-2xl flex items-center justify-center">
@@ -454,8 +454,8 @@ export function Footer() {
   return (
     <>
       {/* Primary Navigation */}
-      <nav className="fixed bottom-2 left-1/2 -translate-x-1/2 w-100 max-w-md z-50">
-        <div className="pill-surface rounded-4xl h-16 px-4 flex items-center justify-between shadow-2xl">
+      <nav className="fixed bottom-8 left-0 right-0 max-w-md mx-auto px-6 z-50 md:left-8 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:right-auto md:mx-0">
+        <div className="pill-surface rounded-4xl h-16 px-4 flex items-center justify-between shadow-2xl md:flex-col md:h-auto md:py-4 md:gap-4">
           {navItems.map((item) => {
             const Icon = item.icon;
 

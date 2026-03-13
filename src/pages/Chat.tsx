@@ -376,10 +376,50 @@ export function Chat({
       )}
 
       {viewerOpen && selectedLink && (
-        <Viewer
-          initialUrl={`https://www.google.com/search?q=${encodeURIComponent(selectedLink)}`}
-          onClose={handleCloseViewer}
-        />
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex items-center justify-center">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-4xl max-h-[90vh] overflow-auto border border-white/20">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold text-white">External Link</h2>
+              <button
+                onClick={handleCloseViewer}
+                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="space-y-4">
+              <p className="text-white/80">Opening external link:</p>
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent(selectedLink)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-accent hover:underline break-all"
+              >
+                https://www.google.com/search?q=
+                {encodeURIComponent(selectedLink)}
+              </a>
+              <div className="flex gap-3">
+                <button
+                  onClick={() =>
+                    window.open(
+                      `https://www.google.com/search?q=${encodeURIComponent(selectedLink)}`,
+                      "_blank",
+                    )
+                  }
+                  className="px-4 py-2 bg-brand-accent text-black rounded-lg font-medium hover:bg-white transition-colors"
+                >
+                  Open in New Tab
+                </button>
+                <button
+                  onClick={handleCloseViewer}
+                  className="px-4 py-2 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
